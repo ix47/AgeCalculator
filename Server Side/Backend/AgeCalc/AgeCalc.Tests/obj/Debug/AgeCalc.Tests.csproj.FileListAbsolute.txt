@@ -1,0 +1,8 @@
+C:\Projects\AgeCalc\AgeCalc.Tests\bin\Debug\AgeCalc.Tests.dll.config
+C:\Projects\AgeCalc\AgeCalc.Tests\bin\Debug\AgeCalc.Tests.dll
+C:\Projects\AgeCalc\AgeCalc.Tests\bin\Debug\AgeCalc.Tests.pdb
+C:\Projects\AgeCalc\AgeCalc.Tests\bin\Debug\AgeCalc.dll
+C:\Projects\AgeCalc\AgeCalc.Tests\bin\Debug\AgeCalc.pdb
+C:\Projects\AgeCalc\AgeCalc.Tests\obj\Debug\AgeCalc.Tests.csprojResolveAssemblyReference.cache
+C:\Projects\AgeCalc\AgeCalc.Tests\obj\Debug\AgeCalc.Tests.dll
+C:\Projects\AgeCalc\AgeCalc.Tests\obj\Debug\AgeCalc.Tests.pdb

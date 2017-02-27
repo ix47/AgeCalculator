@@ -1,0 +1,5 @@
+C:\Projects\AgeCalc\AgeCalc\bin\AgeCalc.dll
+C:\Projects\AgeCalc\AgeCalc\bin\AgeCalc.pdb
+C:\Projects\AgeCalc\AgeCalc\obj\Debug\AgeCalc.csprojResolveAssemblyReference.cache
+C:\Projects\AgeCalc\AgeCalc\obj\Debug\AgeCalc.dll
+C:\Projects\AgeCalc\AgeCalc\obj\Debug\AgeCalc.pdb

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeCalc", "AgeCalc\AgeCalc.csproj", "{F41F59B7-3B9C-478D-994C-F6141F45EC64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgeCalc.Tests", "AgeCalc.Tests\AgeCalc.Tests.csproj", "{C0E6953A-4D4D-4FE2-A865-4371A995B935}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F41F59B7-3B9C-478D-994C-F6141F45EC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41F59B7-3B9C-478D-994C-F6141F45EC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41F59B7-3B9C-478D-994C-F6141F45EC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41F59B7-3B9C-478D-994C-F6141F45EC64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0E6953A-4D4D-4FE2-A865-4371A995B935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0E6953A-4D4D-4FE2-A865-4371A995B935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0E6953A-4D4D-4FE2-A865-4371A995B935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0E6953A-4D4D-4FE2-A865-4371A995B935}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

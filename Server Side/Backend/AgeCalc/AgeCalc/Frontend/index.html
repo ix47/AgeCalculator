@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/png" href="images/aging.jpeg" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-timepicker-addon.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="Bootstrap-3.1.1/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css" />
+
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.datetimepicker.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/jquery-ui-timepicker-addon.js"></script>
+    <script src="js/jquery-ui-sliderAccess.js"></script>
+
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/soapclient2.js"></script>
+    <script src="Bootstrap-3.1.1/js/bootstrap.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-dialog.min.js"></script>
+
+    <!-- Bootstrap -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="Bootstrap-3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="Bootstrap-3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- Styling for the Date time picker -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css" />
+
+    <!-- Angular Scripts  -->
+    <script src="js/app.js"></script>
+    <script src="js/Directives/AppDateTimePicker.js"></script>
+    <script src="js/Controllers/IndexController.js"></script>
+    <script src="js/Services/AppLocalStorage.js"></script>
+    <script src="js/Services/WaitSpinner.js"></script>
+    <script src="js/Services/AgeServices.js"></script>
+
+    <title>Age Calculator</title>
+  </head>
+  <body ng-app="ageWebAPI">
+  <div class="mainArea" ng-controller="IndexController">
+    <form name="form" class="css-form" novalidate >
+        <div id="map" class="mapbody">
+            <div class="detailsQuestionArea">
+                <span class="infoTitle" >Please tell us your name : </span>
+                <div class="form-group" ng-class="{ 'has-error' : form.userFirstName.$invalid && !form.userFirstName.$pristine }" >
+                    <br/><span>First Name</span>
+                    <input name="userFirstName" class="form-control" ng-model="userFirstName" type="text" required ng-minlength="2" ng-maxlength="15" ng-pattern="/^[a-zA-Z\s]*$/" />
+                    <p ng-show="form.userFirstName.$invalid && !form.userFirstName.$pristine" class="help-block">Tell us your First name.</p>
+                    <p ng-show="form.userFirstName.$error.minlength" class="help-block">Name is too short. (must be at least 2 letters)</p>
+                    <p ng-show="form.userFirstName.$error.maxlength" class="help-block">Name is too long. (must be at the most 15 letters)</p>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : form.userLastName.$invalid && !form.userLastName.$pristine }" >
+                    <br/><span>Last Name</span>
+                    <input name="userLastName" class="form-control" ng-model="userLastName" type="text" required ng-minlength="2" ng-maxlength="15" ng-pattern="/^[a-zA-Z\s]*$/" />
+                    <p ng-show="form.userLastName.$invalid && !form.userLastName.$pristine" class="help-block">Tell us your Last name.</p>
+                    <p ng-show="form.userLastName.$error.minlength" class="help-block">Name is too short. (must be at least 2 letters)</p>
+                    <p ng-show="form.userLastName.$error.maxlength" class="help-block">Name is too long. (must be at the most 15 letters)</p>
+                </div>
+            </div>
+            <div class="ageQuestionArea">
+                <span><b>Hi {{userFirstName}}!</b></span><br/>
+                <div id="changeSinceDatetimepicker" datetimepicker ng-model="dobDateTime">
+                    <span>When were you born ?</span>
+                    <input name="dobDateTime" style="max-width: 150px;" ng-model="dobDateTime" type="text" ></input>
+                    <span class="add-on">
+                        <i data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar"></i>
+                    </span>
+                </div>
+                <br/>
+                <button class="btn btn-success" type="submit" ng-disabled="form.$invalid" ng-click="goCalculateAge()" >
+                Go
+                </button>
+            </div>
+            <br/>
+            <div id="ageResultArea" style="visibility: hidden;">
+                <span id="ageResult">{{resultMessage}}</span>
+                <div class="heart">
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#informationCollapse" aria-expanded="false" aria-controls="informationCollapse" ng-click="fetchPreviousVisitors()" >
+            Who's been here
+        </button>
+    </form>
+
+
+
+    <div class="collapse out" id="informationCollapse">
+        <div class="well">
+            <div class="infoTitle"><b>Previous Visitors</b></div>
+            <div class="engineersList" style="max-height: 300px;">
+                <div ng-repeat="dispVisitor in visitorsDisplayList">
+                    <div class="radio">
+                        <label>{{dispVisitor.visitorName}}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

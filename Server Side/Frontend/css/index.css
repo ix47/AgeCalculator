@@ -1,0 +1,141 @@
+html, body {
+height: 100%;
+margin: 0;
+padding: 0;
+}
+
+body,html{width:100%;height:100%;}
+body{font-family:'Arvo'; background: #4f3b5b;background: -moz-radial-gradient(center, ellipse cover,  #4f3b5b 0%, #231733 100%);background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#4f3b5b), color-stop(100%,#231733));background: -webkit-radial-gradient(center, ellipse cover,  #4f3b5b 0%,#231733 100%);background: -o-radial-gradient(center, ellipse cover,  #4f3b5b 0%,#231733 100%);background: -ms-radial-gradient(center, ellipse cover,  #4f3b5b 0%,#231733 100%);background: radial-gradient(ellipse at center,  #4f3b5b 0%,#231733 100%);}
+
+.pageBody {
+  /* Users with the latest browsers will see this background instead of the one set on the body of the page. */
+  background: linear-gradient(to left, #4B79A1 , #283E51); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.info {
+background-color: #F2F2F2;
+position: absolute;
+top: 100px;
+left: 70px;
+z-index: 1;
+width: 250px;
+height: 300px;
+border: groove;
+}
+.infoTitle {
+  color: #F2F2F2;
+  font-size: 1.4em;
+}
+.mainArea {
+	position: absolute;
+	z-index: 1;
+	width: 800px;
+	height: 100%;
+  top: 30px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+}
+.heart {
+	background: url('../images/BeatingHeart.png');
+	background-repeat: no-repeat;
+	width: 48px;
+	height: 45px;
+	z-index: 1;
+	animation: heartbeat 1s infinite;
+}
+
+.calendarLabel {
+  position: absolute;
+  left: 310px;
+}
+
+.whosBeenHereButton {
+  width: 100%;
+}
+
+.well2 {
+  background-color: #283E51;
+}
+
+.previousVisitorsArea {
+  position: inherit;
+  margin-top: 50px;
+}
+
+.overlay{
+  position: inherit;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100px;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+.removed {
+  
+  -webkit-animation: disapear 1s;
+  -webkit-animation-fill-mode: forwards; 
+  animation: disapear 1s;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes disapear{
+  
+  50% {
+    
+    -webkit-transform: translateX(-5%);
+    transform: translateX(-5%);
+  }
+  
+  100% {
+    -webkit-transform: translateX(400%);
+    transform: translateX(400%); 
+  }
+
+}
+
+@keyframes disapear{
+  
+  50% {
+    
+    -webkit-transform: translateX(-5%);
+    transform: translateX(-5%);
+  }
+  
+  100% {
+    -webkit-transform: translateX(400%);
+    transform: translateX(400%); 
+  }
+
+}
+
+@keyframes heartbeat
+{
+  0%
+  {
+    transform: scale( .75 );
+  }
+  20%
+  {
+    transform: scale( 1 );
+  }
+  40%
+  {
+    transform: scale( .75 );
+  }
+  60%
+  {
+    transform: scale( 1 );
+  }
+  80%
+  {
+    transform: scale( .75 );
+  }
+  100%
+  {
+    transform: scale( .75 );
+  }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="cookie_used_true js mac js">
+  <head>
+    <link rel="icon" type="image/png" href="images/aging.jpeg" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui-timepicker-addon.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="Bootstrap-3.1.1/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-dialog.min.css" />
+
+    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.datetimepicker.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/jquery-ui-timepicker-addon.js"></script>
+    <script src="js/jquery-ui-sliderAccess.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.transit/0.9.9/jquery.transit.min.js"></script>
+
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/soapclient2.js"></script>
+    <script src="Bootstrap-3.1.1/js/bootstrap.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-dialog.min.js"></script>
+
+    <!-- Bootstrap -->
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="Bootstrap-3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="Bootstrap-3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- Styling for the Date time picker -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/input-pen.css" />
+    <link rel="stylesheet" type="text/css" href="css/submitbutton.css" />
+    <link rel="stylesheet" type="text/css" href="css/paginate.css" />
+
+    <!-- Angular Scripts  -->
+    <script src="js/app.js"></script>
+    <script src="js/Directives/AppDateTimePicker.js"></script>
+    <script src="js/Controllers/IndexController.js"></script>
+    <script src="js/Services/AppLocalStorage.js"></script>
+    <script src="js/Services/WaitSpinner.js"></script>
+    <script src="js/Services/AgeServices.js"></script>
+
+    <title>Age Calculator</title>
+  </head>
+  <body ng-app="ageWebAPI" class="pageBody">
+  <div class="mainArea" ng-controller="IndexController">
+    <form name="form" class="css-form" novalidate >
+        <div id="map" class="mapBody">
+            <div class="detailsQuestionArea">
+            <label class="infoTitle" >Please tell us your details and we will calculate your age</label><br/>
+                <div id="nameQuestions">
+                    <div class="wrap-label">
+                            <label id="userFirstNameLabel" for="userFirstName">First Name</label>
+                            <p class="iconicfill-pen-alt2"></p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : form.userFirstName.$invalid && !form.userFirstName.$pristine }" >
+                        <input id="userFirstName" name="userFirstName" ng-model="userFirstName" type="text" required ng-minlength="2" ng-maxlength="15" ng-pattern="/^[a-zA-Z\s]*$/" />
+                        <p ng-show="form.userFirstName.$invalid && !form.userFirstName.$pristine" class="help-block">Tell us your First name.</p>
+                        <p ng-show="form.userFirstName.$error.minlength" class="help-block">Name is too short. (must be at least 2 letters)</p>
+                        <p ng-show="form.userFirstName.$error.maxlength" class="help-block">Name is too long. (must be at the most 15 letters)</p>
+                    </div>
+
+                    <div class="wrap-label">
+                        <label id="userLastNameLabel" for="userLastName">Last Name</label>
+                        <p class="iconicfill-pen-alt2"></p>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : form.userLastName.$invalid && !form.userLastName.$pristine }" >
+                        <input id="userLastName" name="userLastName" ng-model="userLastName" type="text" required ng-minlength="2" ng-maxlength="15" ng-pattern="/^[a-zA-Z\s]*$/" />
+                        <p ng-show="form.userLastName.$invalid && !form.userLastName.$pristine" class="help-block">Tell us your Last name.</p>
+                        <p ng-show="form.userLastName.$error.minlength" class="help-block">Name is too short. (must be at least 2 letters)</p>
+                        <p ng-show="form.userLastName.$error.maxlength" class="help-block">Name is too long. (must be at the most 15 letters)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ageQuestionArea">
+                <label><b>Hi {{userFirstName}}!</b></label><br/>
+                <div id="dateOfBirthQuestion">
+                    <div id="changeSinceDatetimepicker" datetimepicker ng-model="dobDateTime">
+                        <label for="dobDateTime">When were you born ? </label>
+                        <label class="add-on calendarLabel">
+                            <i data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar"></i>
+                        </label>
+                        <input name="dobDateTime" ng-model="dobDateTime" type="text" ></input>
+
+                    </div>
+                </div>
+                <span style="display:none" >{{ isFormValid = form.$valid}}</span>
+                <div class="animate-switch-container" ng-switch on="form.$invalid">
+                  <div class="animate-switch" ng-switch-when="true">
+                      <style type="text/css">
+                          #goButton a:hover {
+                              background: rgba(255,0,0,0.5);
+                            }
+                      </style>
+                  </div>
+                </div>
+                <div id="goButton">
+                  <a id="buttonAnchor" href="#">Go</a>
+                  <a class="loading" href="#">loading</a>
+                  <svg viewBox="0 0 240 220">
+                    <rect id="middle" x="20" y="100" width="200" height="60" rx="30"></rect>
+                    <path id="top" d="
+                      M 60,100
+                      L 50,100
+                      C 33.4357078,100 20,113.427814 20,130
+                      L 20,130
+                      C 20,146.568541 33.4331197,160  50,160
+                      L190,160
+                      C206.570288,160 220,146.572314 220,130
+                      L220,100
+                      C220,-60 180, 80 160,100
+                      C140,120 100,160 100,160
+                    "></path>
+                    <path id="bottom" d="
+                      M180,160
+                      L190,160
+                      C206.564295,160 220,146.572186 220,130
+                      L220,130
+                      C220,113.431458 206.56688,100 190,100
+                      L 50,100
+                      C33.4297125,100 20,113.435296 20,130
+                      C20,130 20,120 20,140
+                      C20,220 180,200 120,140
+                      C100,120 80,100 80,100
+                    "></path>
+                  </svg>
+                  <a class="feedback" href="#"></a>
+                </div>
+
+            </div>
+            <div id="ageResultArea" style="visibility: hidden;">
+                <label id="ageResult">{{resultMessage}}</label>
+                <div class="heart">
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary whosBeenHereButton" type="button" data-toggle="collapse" data-target="#informationCollapse" aria-expanded="false" aria-controls="informationCollapse" ng-click="fetchPreviousVisitors()" >
+            Who's been here
+        </button>
+    </form>
+
+
+
+    <div class="collapse out" id="informationCollapse">
+        <div class="well2">
+            <div class="infoTitle"><b>Previous Visitors</b></div>
+
+              <div class="counter"></div>
+              <button class="paginate left"><i></i><i></i></button>
+              <button class="paginate right"><i></i><i></i></button>
+
+              <div class="previousVisitorsArea">
+                <div ng-repeat="dispVisitor in filteredVisitorsDisplayList">
+                    <div class="radio">
+                        <label>{{dispVisitor.visitorName}}</label>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
