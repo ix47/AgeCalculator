@@ -64,6 +64,34 @@ border: groove;
   margin-top: 50px;
 }
 
+.clickNameMessageSpan {
+  color: #F2F2F2;
+  font-size: 0.8em;
+  position: absolute;
+  right: 0px;
+}
+
+.calendarYearShortcutMessage {
+  color: #F2F2F2;
+  font-size: 0.6m;
+  position: absolute;
+}
+
+#resetButtonTip {
+  color: #F2F2F2;
+  font-size: 0.6m;
+  position: inherit;
+  margin-top: -45px;
+  margin-bottom: 25px;
+  margin-left: 40px;
+  visibility: hidden;
+}
+
+.ageLabel {
+  position: relative;
+  left: 20px;
+}
+
 .overlay{
   position: inherit;
   top: 0;

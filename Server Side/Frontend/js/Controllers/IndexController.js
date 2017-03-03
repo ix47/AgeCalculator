@@ -57,22 +57,26 @@ ageWebAPI.controller('IndexController', function ($scope, $routeParams, $http, A
       $(goButton).click(function() {
         if ($(goButton).hasClass("loading-start")) {
           if ($(goButton).hasClass("loading-end")) {
+            $('#buttonAnchor').text('Go');
             $scope.resetInputControls();
+            $('#resetButtonTip').css({"visibility":"hidden"});
             return $(goButton).attr("class", "");
           }
         } else {
           
-          //We won't let the button do anything if the user has not provider the information we need.
+          //We won't let the button do anything if the user has not provided the information we need.
           if ($scope.isFormValid == false) { return;}
 
           $scope.goCalculateAge();
           setTimeout((function() {
+            $('#buttonAnchor').text('');
             return $(goButton).addClass("loading-start");
           }), 0);
           setTimeout((function() {
             return $(goButton).addClass("loading-progress");
           }), 500);
           return setTimeout((function() {
+            $('#resetButtonTip').css({"visibility":"visible"});
             return $(goButton).addClass("loading-end");
           }), 1500);
         }
@@ -203,20 +207,22 @@ ageWebAPI.controller('IndexController', function ($scope, $routeParams, $http, A
     $scope.populateVisitorsDisplayList = function (visitors) {
     	angular.forEach(visitors, function (visitor){
 
-        var displayValue = visitor["FirstName"] + ' ' + visitor["LastName"];
-        displayValue += ' - Age : ';
+        var displayName = visitor["FirstName"] + ' ' + visitor["LastName"];
+
+        var displayValue = 'Age : ';
+        
         var age = visitor["Age"];
         displayValue += age["Year"] + ' Year(s), ';
         displayValue += age["Month"] + ' Month(s), ';
         displayValue += age["Day"] + ' Day(s) and ';
         displayValue += age["Hour"] + ' Hour(s). ';
 
-    		$scope.addVisitorForDisplay(visitor["UserId"], displayValue);
+    		$scope.addVisitorForDisplay(visitor["UserId"], displayName, displayValue);
     	});
 
     };
 
-    $scope.addVisitorForDisplay = function (visitor_Id, visitor_name) {
+    $scope.addVisitorForDisplay = function (visitor_Id, visitor_name, visitor_age) {
       var found = false;
       angular.forEach($scope.visitorsDisplayList, function (visitor){
         if(visitor.visitorId == visitor_Id) {
@@ -224,7 +230,7 @@ ageWebAPI.controller('IndexController', function ($scope, $routeParams, $http, A
         }
       });
       if(found == false) {
-        $scope.visitorsDisplayList.push({visitorId: visitor_Id, visitorName: visitor_name});
+        $scope.visitorsDisplayList.push({visitorId: visitor_Id, visitorName: visitor_name, visitorAge: visitor_age});
       }
 
       $scope.slide(0);
